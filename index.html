@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🛡️ Phishing Email Analyzer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🛡️ Phishing Email Analyzer</h1>
+            <p>Paste a suspicious email below to check if it's a phishing attempt!</p>
+        </header>
+
+        <main>
+            <!-- Email Input Section -->
+            <div class="input-section">
+                <label for="emailInput">📧 Paste Email Content:</label>
+                <textarea id="emailInput" placeholder="Paste the full email here...
+                
+Example:
+From: support@amaz0n-security.com
+Subject: URGENT: Your account will be suspended!
+
+Dear Customer,
+Click here immediately to verify your account...
+http://fake-amazon.com/login"></textarea>
+                <button onclick="analyzeEmail()">🔍 Analyze Email</button>
+            </div>
+
+            <!-- Results Section -->
+            <div id="results" class="results hidden">
+                <h2>📊 Analysis Report</h2>
+                
+                <div class="score-card">
+                    <div class="score-circle" id="scoreCircle">
+                        <span id="scoreNumber">0</span>
+                        <small>/ 100</small>
+                    </div>
+                    <div class="score-label" id="scoreLabel">Safe</div>
+                </div>
+
+                <div class="findings" id="findingsList">
+                    <!-- Findings will appear here -->
+                </div>
+
+                <div class="recommendation" id="recommendation">
+                    <!-- Recommendation will appear here -->
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>⚠️ This is an educational tool. Always verify suspicious emails with the actual company!</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
