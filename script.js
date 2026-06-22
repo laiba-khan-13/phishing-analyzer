@@ -24,7 +24,7 @@ function analyzeEmail() {
     
     suspiciousDomains.forEach(domain => {
         if (emailText.includes(domain)) {
-            findings.push({ type: 'danger', text: `🚨 Suspicious sender domain detected: "${domain}"` });
+            findings.push({ type: 'danger', text: ` Suspicious sender domain detected: "${domain}"` });
             score += 25;
         }
     });
@@ -36,7 +36,7 @@ function analyzeEmail() {
     
     urgentWords.forEach(word => {
         if (emailText.includes(word)) {
-            findings.push({ type: 'warning', text: `⚠️ Urgent/scary language: "${word}"` });
+            findings.push({ type: 'warning', text: ` Urgent/scary language: "${word}"` });
             score += 5;
         }
     });
@@ -48,7 +48,7 @@ function analyzeEmail() {
     
     personalInfoRequests.forEach(request => {
         if (emailText.includes(request)) {
-            findings.push({ type: 'danger', text: `🚨 Requests personal info: "${request}"` });
+            findings.push({ type: 'danger', text: ` Requests personal info: "${request}"` });
             score += 20;
         }
     });
@@ -61,7 +61,7 @@ function analyzeEmail() {
     
     suspiciousLinkPatterns.forEach(pattern => {
         if (emailText.includes(pattern)) {
-            findings.push({ type: 'warning', text: `🔗 Suspicious link pattern: "${pattern}"` });
+            findings.push({ type: 'warning', text: ` Suspicious link pattern: "${pattern}"` });
             score += 10;
         }
     });
@@ -73,7 +73,7 @@ function analyzeEmail() {
         const url = match[1].toLowerCase();
         const text = match[2].toLowerCase();
         if (text.includes('amazon') && !url.includes('amazon.com')) {
-            findings.push({ type: 'danger', text: `🚨 Fake link! Text says "Amazon" but URL goes to: ${url}` });
+            findings.push({ type: 'danger', text: ` Fake link! Text says "Amazon" but URL goes to: ${url}` });
             score += 30;
         }
     }
@@ -84,7 +84,7 @@ function analyzeEmail() {
     
     commonTypos.forEach(typo => {
         if (emailText.includes(typo)) {
-            findings.push({ type: 'info', text: `📝 Possible typo/poor grammar: "${typo}"` });
+            findings.push({ type: 'info', text: ` Possible typo/poor grammar: "${typo}"` });
             score += 3;
         }
     });
@@ -95,7 +95,7 @@ function analyzeEmail() {
     
     genericGreetings.forEach(greeting => {
         if (emailText.includes(greeting)) {
-            findings.push({ type: 'info', text: `👤 Generic greeting: "${greeting}"` });
+            findings.push({ type: 'info', text: ` Generic greeting: "${greeting}"` });
             score += 5;
         }
     });
@@ -106,14 +106,14 @@ function analyzeEmail() {
     
     threats.forEach(threat => {
         if (emailText.includes(threat)) {
-            findings.push({ type: 'danger', text: `🚨 Threat detected: "${threat}"` });
+            findings.push({ type: 'danger', text: ` Threat detected: "${threat}"` });
             score += 15;
         }
     });
 
     // 8. Check for attachments mention
     if (emailText.includes('attachment') || emailText.includes('attached file') || emailText.includes('.zip') || emailText.includes('.exe')) {
-        findings.push({ type: 'warning', text: `📎 Email mentions attachments - be careful!` });
+        findings.push({ type: 'warning', text: ` Email mentions attachments - be careful!` });
         score += 10;
     }
 
@@ -132,15 +132,15 @@ function analyzeEmail() {
     let riskLevel;
     if (score < 30) {
         riskLevel = 'safe';
-        scoreLabel.textContent = '✅ Likely Safe';
+        scoreLabel.textContent = ' Likely Safe';
         recommendation.textContent = 'This email looks legitimate, but always stay cautious!';
     } else if (score < 70) {
         riskLevel = 'warning';
-        scoreLabel.textContent = '⚠️ Suspicious';
+        scoreLabel.textContent = ' Suspicious';
         recommendation.textContent = 'This email has some red flags. Be careful and verify with the sender!';
     } else {
         riskLevel = 'danger';
-        scoreLabel.textContent = '🚨 HIGH RISK - Phishing!';
+        scoreLabel.textContent = ' HIGH RISK - Phishing!';
         recommendation.textContent = 'DO NOT CLICK ANY LINKS OR DOWNLOAD ATTACHMENTS! Delete this email!';
     }
 
@@ -151,7 +151,7 @@ function analyzeEmail() {
 
     // Display findings
     if (findings.length === 0) {
-        findingsList.innerHTML = '<div class="finding safe">✅ No suspicious patterns found!</div>';
+        findingsList.innerHTML = '<div class="finding safe"> No suspicious patterns found!</div>';
     } else {
         findings.forEach(finding => {
             const div = document.createElement('div');
